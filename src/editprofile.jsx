@@ -1,8 +1,21 @@
 import React from "react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import CivilianDashboard from "./civiliandashboard";
 
 export default function EditProfile() {
+  const navigate = useNavigate();
+
+  const handleCancel = () => {
+    navigate(-1); // Go back to previous page
+  };
+
+  const handleSave = () => {
+    // Add your save logic here
+    // Then navigate back
+    navigate(-1);
+  };
+
   return (
     <CivilianDashboard>
       <div className="p-6">
@@ -115,11 +128,17 @@ export default function EditProfile() {
 
             {/* BUTTONS */}
             <div className="flex justify-end gap-3 border-t pt-4">
-              <button className="px-4 py-2 text-sm border rounded-md text-gray-600 hover:bg-gray-100">
+              <button 
+                onClick={handleCancel}
+                className="px-4 py-2 text-sm border rounded-md text-gray-600 hover:bg-gray-100"
+              >
                 Cancel
               </button>
 
-              <button className="px-4 py-2 text-sm bg-blue-600 text-white rounded-md hover:bg-blue-700">
+              <button 
+                onClick={handleSave}
+                className="px-4 py-2 text-sm bg-blue-600 text-white rounded-md hover:bg-blue-700"
+              >
                 Save Changes
               </button>
             </div>

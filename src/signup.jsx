@@ -1,9 +1,25 @@
 import { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { useNavigate, Link } from "react-router-dom";
 
 export default function Signup() {
   const [showPass, setShowPass] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
+  const navigate = useNavigate();
+
+  const handleSignup = () => {
+    // Add your signup logic here
+    // After successful signup, redirect to login
+    navigate("/login");
+  };
+
+  const handleTermsClick = () => {
+    navigate("/terms");
+  };
+
+  const handlePrivacyClick = () => {
+    navigate("/privacy");
+  };
 
   return (
     <div className="min-h-screen bg-[#f4f5f7] flex items-center justify-center px-4 sm:px-6 md:px-10 py-6 font-Roboto">
@@ -34,7 +50,7 @@ export default function Signup() {
           </p>
 
           {/* FORM */}
-          <form className="space-y-4">
+          <form className="space-y-4" onSubmit={(e) => { e.preventDefault(); handleSignup(); }}>
 
             {/* NAME */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -177,22 +193,36 @@ export default function Signup() {
               <input type="checkbox" />
               <span>
                 I agree to all the{" "}
-                <span className="text-red-500 cursor-pointer">Terms</span> and{" "}
-                <span className="text-red-500 cursor-pointer">Privacy Policies</span>
+                <span 
+                  onClick={handleTermsClick}
+                  className="text-red-500 cursor-pointer hover:underline"
+                >
+                  Terms
+                </span>{" "}
+                and{" "}
+                <span 
+                  onClick={handlePrivacyClick}
+                  className="text-red-500 cursor-pointer hover:underline"
+                >
+                  Privacy Policies
+                </span>
               </span>
             </div>
 
             {/* BUTTON */}
-            <button className="w-full bg-blue-600 text-white py-3 rounded-md hover:bg-blue-700 transition">
+            <button 
+              type="submit"
+              className="w-full bg-blue-600 text-white py-3 rounded-md hover:bg-blue-700 transition"
+            >
               Create account
             </button>
 
             {/* LOGIN */}
             <p className="text-center text-sm text-gray-500">
               Already have an account?
-              <span className="text-red-500 ml-1 cursor-pointer">
+              <Link to="/login" className="text-red-500 ml-1 cursor-pointer hover:underline">
                 Login
-              </span>
+              </Link>
             </p>
 
           </form>

@@ -1,5 +1,6 @@
 import Sidebar from "./sidebar";
 import Navbar from "./navbar";
+import { Outlet } from "react-router-dom";
 
 export default function Dashboard() {
   return (
@@ -14,7 +15,7 @@ export default function Dashboard() {
         <Sidebar />
 
         {/* MAIN CONTENT */}
-        <div className="flex-1 p-6">
+        <div className="flex-1 p-6 overflow-y-auto">
 
           {/* STATS */}
           <div className="grid grid-cols-5 gap-4 mb-4">
@@ -119,6 +120,9 @@ export default function Dashboard() {
             </div>
 
           </div>
+
+          {/* Outlet for child routes */}
+          <Outlet />
 
         </div>
 

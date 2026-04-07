@@ -1,8 +1,28 @@
 import { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { useNavigate, Link } from "react-router-dom";
 
 export default function Login() {
   const [showPass, setShowPass] = useState(false);
+  const navigate = useNavigate();
+
+  const handleLogin = () => {
+    // Add your login logic here
+    // Example: check credentials and get user role
+    
+    // For demo purposes - redirect based on role
+    const userRole = "admin"; // Change this based on actual login
+    
+    if (userRole === "admin") {
+      navigate("/dashboard");
+    } else {
+      navigate("/civilian-dashboard");
+    }
+  };
+
+  const handleForgotPassword = () => {
+    navigate("/forgot-password");
+  };
 
   return (
     <div className="min-h-screen bg-[#f4f5f7] flex items-center justify-center px-4 sm:px-6 md:px-10 py-6">
@@ -11,14 +31,14 @@ export default function Login() {
 
         {/* LOGO */}
         <div className="flex items-center gap-3 mb-8">
-        <img
+          <img
             src="src/assets/logo.png"
             alt="logo"
             className="h-10 w-10 object-cover"
-        />
-        <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-[#1E252B]">
+          />
+          <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-[#1E252B]">
             Rescue Team
-        </h1>
+          </h1>
         </div>
 
         {/* Content */}
@@ -34,7 +54,6 @@ export default function Login() {
             <p className="text-gray-500 text-sm mb-8">
               Access the Central Luzon Emergency Response operations command platform.
             </p>
-
 
             {/* EMAIL */}
             <div className="w-full mb-5">
@@ -65,7 +84,7 @@ export default function Login() {
                   <input
                     type={showPass ? "text" : "password"}
                     placeholder="••••••••"
-                   className="w-full bg-transparent outline-none placeholder-gray-400 text-sm sm:text-base"
+                    className="w-full bg-transparent outline-none placeholder-gray-400 text-sm sm:text-base"
                   />
 
                   <span
@@ -86,35 +105,41 @@ export default function Login() {
                 Remember me
               </label>
 
-              <button className="text-sm text-red-400 hover:underline">
+              <button 
+                onClick={handleForgotPassword}
+                className="text-sm text-red-400 hover:underline"
+              >
                 Forgot Password
               </button>
             </div>
 
             {/* Login Button */}
-            <button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-md font-medium transition">
+            <button 
+              onClick={handleLogin}
+              className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-md font-medium transition"
+            >
               Login
             </button>
 
             {/* Signup */}
             <p className="text-center text-sm text-gray-600 mt-5">
               Don’t have an account?{" "}
-              <span className="text-red-400 font-medium hover:underline cursor-pointer">
+              <Link to="/signup" className="text-red-400 font-medium hover:underline cursor-pointer">
                 Sign up
-              </span>
+              </Link>
             </p>
 
           </div>
 
           {/* RIGHT SIDE IMAGE */}
-            <div className="hidden md:block">
-                <div className="rounded-xl overflow-hidden shadow-lg">
-                <img
-                    src="src/assets/aso.jpg"
-                    alt="building"
-                    className="w-full h-full object-cover"
-                />
-                </div>
+          <div className="hidden md:block">
+            <div className="rounded-xl overflow-hidden shadow-lg">
+              <img
+                src="src/assets/aso.jpg"
+                alt="building"
+                className="w-full h-full object-cover"
+              />
+            </div>
           </div>
         </div>
       </div>

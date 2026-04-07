@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import ApplicantDetails from "./applicantdetails";
 import DashboardLayout from "./dashboardlayout";
 
@@ -30,6 +31,37 @@ const applicants = [
 
 export default function VolunteerApproval() {
   const [selected, setSelected] = useState(null);
+  const navigate = useNavigate();
+
+  const handleViewFullApplication = (applicant) => {
+    navigate(`/applicant-details/${applicant.id}`);
+  };
+
+  const handleAccept = (applicant) => {
+    // Add your accept logic here
+    console.log("Accepted:", applicant);
+    // Optionally navigate or refresh
+  };
+
+  const handleReject = (applicant) => {
+    // Add your reject logic here
+    console.log("Rejected:", applicant);
+    // Optionally navigate or refresh
+  };
+
+  const handleAcceptPanel = () => {
+    if (selected) {
+      console.log("Accepted from panel:", selected);
+      setSelected(null);
+    }
+  };
+
+  const handleRejectPanel = () => {
+    if (selected) {
+      console.log("Rejected from panel:", selected);
+      setSelected(null);
+    }
+  };
 
   return (
     <DashboardLayout>
@@ -64,59 +96,58 @@ export default function VolunteerApproval() {
             </button>
           </div>
 
-        {/* STATS */}
-        {/* STATS */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
-        {[
-            {
-            label: "Total Applicants",
-            value: 3,
-            progress: "100%",
-            color: "bg-gray-500",
-            },
-            {
-            label: "Pending Review",
-            value: 2,
-            progress: "60%",
-            color: "bg-orange-500",
-            },
-            {
-            label: "Accepted",
-            value: 1,
-            progress: "30%",
-            color: "bg-green-600",
-            },
-            {
-            label: "Rejected",
-            value: 0,
-            progress: "0%",
-            color: "bg-gray-400",
-            },
-        ].map((item, i) => (
-            <div
-            key={i}
-            className="bg-[#F5F6F8] border border-gray-200 rounded-lg p-4"
-            >
-            {/* TOP */}
-            <div className="flex items-center gap-3">
-                <h2 className="text-3xl font-semibold text-gray-700">
-                {item.value}
-                </h2>
-                <p className="text-sm text-gray-600">
-                {item.label}
-                </p>
-            </div>
+          {/* STATS */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+            {[
+              {
+                label: "Total Applicants",
+                value: 3,
+                progress: "100%",
+                color: "bg-gray-500",
+              },
+              {
+                label: "Pending Review",
+                value: 2,
+                progress: "60%",
+                color: "bg-orange-500",
+              },
+              {
+                label: "Accepted",
+                value: 1,
+                progress: "30%",
+                color: "bg-green-600",
+              },
+              {
+                label: "Rejected",
+                value: 0,
+                progress: "0%",
+                color: "bg-gray-400",
+              },
+            ].map((item, i) => (
+              <div
+                key={i}
+                className="bg-[#F5F6F8] border border-gray-200 rounded-lg p-4"
+              >
+                {/* TOP */}
+                <div className="flex items-center gap-3">
+                  <h2 className="text-3xl font-semibold text-gray-700">
+                    {item.value}
+                  </h2>
+                  <p className="text-sm text-gray-600">
+                    {item.label}
+                  </p>
+                </div>
 
-            {/* PROGRESS */}
-            <div className="mt-2 w-full h-1.5 bg-gray-300 rounded-full overflow-hidden">
-                <div
-                className={`h-full ${item.color} rounded-full`}
-                style={{ width: item.progress }}
-                />
-            </div>
-            </div>
-        ))}
-        </div>
+                {/* PROGRESS */}
+                <div className="mt-2 w-full h-1.5 bg-gray-300 rounded-full overflow-hidden">
+                  <div
+                    className={`h-full ${item.color} rounded-full`}
+                    style={{ width: item.progress }}
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
 
           {/* LIST */}
           {applicants.map((app) => (
@@ -143,17 +174,23 @@ export default function VolunteerApproval() {
 
               <div className="flex mt-4 border-t pt-3 text-sm">
                 <button
-                  onClick={() => setSelected(app)}
-                  className="flex-1 text-gray-600 border-r"
+                  onClick={() => handleViewFullApplication(app)}
+                  className="flex-1 text-gray-600 border-r hover:text-blue-600"
                 >
                   🔍 View Full Application
                 </button>
 
-                <button className="flex-1 text-green-600">
+                <button 
+                  onClick={() => handleAccept(app)}
+                  className="flex-1 text-green-600 hover:text-green-700"
+                >
                   ✔ Accept
                 </button>
 
-                <button className="flex-1 text-red-500">
+                <button 
+                  onClick={() => handleReject(app)}
+                  className="flex-1 text-red-500 hover:text-red-600"
+                >
                   ✖ Reject
                 </button>
               </div>
@@ -173,27 +210,33 @@ export default function VolunteerApproval() {
                 />
               </div>
 
-<div className="flex justify-between items-center p-3 border-t border-[#DFDFF0] bg-white">
+              <div className="flex justify-between items-center p-3 border-t border-[#DFDFF0] bg-white">
 
-  {/* LEFT */}
-  <button className="px-3 py-1.5 text-sm font-normal border border-red-400 text-red-500 rounded hover:bg-red-50">
-    ✖ Reject
-  </button>
+                {/* LEFT */}
+                <button 
+                  onClick={handleRejectPanel}
+                  className="px-3 py-1.5 text-sm font-normal border border-red-400 text-red-500 rounded hover:bg-red-50"
+                >
+                  ✖ Reject
+                </button>
 
-  {/* RIGHT */}
-  <div className="flex gap-2">
-    <button
-      onClick={() => setSelected(null)}
-      className="px-3 py-1.5 text-sm font-normal border border-[#DFDFF0] text-gray-600 rounded hover:bg-gray-100"
-    >
-      Close
-    </button>
+                {/* RIGHT */}
+                <div className="flex gap-2">
+                  <button
+                    onClick={() => setSelected(null)}
+                    className="px-3 py-1.5 text-sm font-normal border border-[#DFDFF0] text-gray-600 rounded hover:bg-gray-100"
+                  >
+                    Close
+                  </button>
 
-    <button className="px-3 py-1.5 text-sm font-normal bg-green-600 text-white rounded hover:bg-green-700">
-      ✔ Accept
-    </button>
-  </div>
-</div>
+                  <button 
+                    onClick={handleAcceptPanel}
+                    className="px-3 py-1.5 text-sm font-normal bg-green-600 text-white rounded hover:bg-green-700"
+                  >
+                    ✔ Accept
+                  </button>
+                </div>
+              </div>
             </>
           ) : (
             <div className="flex items-center justify-center h-full text-gray-400 text-center">

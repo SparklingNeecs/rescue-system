@@ -1,4 +1,15 @@
+import { NavLink, useNavigate } from "react-router-dom";
+
 export default function DashboardLayout({ children }) {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    localStorage.removeItem('userRole');
+    navigate('/login');
+  };
+
   return (
     <div className="h-screen flex flex-col overflow-hidden">
 
@@ -42,31 +53,59 @@ export default function DashboardLayout({ children }) {
             {/* MENU */}
             <div className="space-y-2 text-gray-600 text-sm">
 
-              <div className="p-2 rounded hover:bg-gray-200 cursor-pointer">
+              <NavLink 
+                to="/dashboard"
+                className={({ isActive }) => 
+                  `p-2 rounded hover:bg-gray-200 cursor-pointer block ${isActive ? 'bg-blue-100 text-blue-600 font-medium' : ''}`
+                }
+              >
                 🏠 Dashboard
-              </div>
+              </NavLink>
 
-              <div className="p-2 rounded hover:bg-gray-200 cursor-pointer">
+              <NavLink 
+                to="/incidents"
+                className={({ isActive }) => 
+                  `p-2 rounded hover:bg-gray-200 cursor-pointer block ${isActive ? 'bg-blue-100 text-blue-600 font-medium' : ''}`
+                }
+              >
                 📝 Incidents
-              </div>
+              </NavLink>
 
-              <div className="p-2 rounded hover:bg-gray-200 cursor-pointer">
+              <NavLink 
+                to="/units"
+                className={({ isActive }) => 
+                  `p-2 rounded hover:bg-gray-200 cursor-pointer block ${isActive ? 'bg-blue-100 text-blue-600 font-medium' : ''}`
+                }
+              >
                 🖼 Units
-              </div>
+              </NavLink>
 
-              <div className="p-2 rounded bg-blue-100 text-blue-600 font-medium">
+              <NavLink 
+                to="/volunteer-approval"
+                className={({ isActive }) => 
+                  `p-2 rounded hover:bg-gray-200 cursor-pointer block ${isActive ? 'bg-blue-100 text-blue-600 font-medium' : ''}`
+                }
+              >
                 👥 Volunteers
-              </div>
+              </NavLink>
 
-              <div className="p-2 rounded hover:bg-gray-200 cursor-pointer">
+              <NavLink 
+                to="/edit-profile"
+                className={({ isActive }) => 
+                  `p-2 rounded hover:bg-gray-200 cursor-pointer block ${isActive ? 'bg-blue-100 text-blue-600 font-medium' : ''}`
+                }
+              >
                 ⚙️ Settings
-              </div>
+              </NavLink>
 
             </div>
           </div>
 
           {/* LOGOUT (FIXED BOTTOM) */}
-          <div className="text-gray-500 text-sm cursor-pointer">
+          <div 
+            onClick={handleLogout}
+            className="text-gray-500 text-sm cursor-pointer hover:text-red-600"
+          >
             🚪 Logout
           </div>
         </div>

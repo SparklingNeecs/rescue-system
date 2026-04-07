@@ -1,4 +1,21 @@
+import { useParams, useNavigate } from 'react-router-dom';
+
 export default function ApplicantDetails({ data, onClose }) {
+  const { id } = useParams();
+  const navigate = useNavigate();
+  
+  // If no data prop and we have an id from URL, fetch data here
+  // Otherwise use the data prop as is
+  
+  // Handle close - either call onClose or navigate back
+  const handleClose = () => {
+    if (onClose) {
+      onClose();
+    } else {
+      navigate(-1); // Go back to previous page
+    }
+  };
+
   return (
     <div className="h-full flex flex-col">
 
@@ -6,7 +23,7 @@ export default function ApplicantDetails({ data, onClose }) {
       <div className="p-4 border-b relative">
 
         <button
-          onClick={onClose}
+          onClick={handleClose}
           className="absolute top-3 right-3 text-gray-400 text-xl"
         >
           ✕

@@ -1,7 +1,16 @@
 import React, { useState } from "react";
+import { useNavigate, NavLink } from "react-router-dom";
 
 export default function CivilianDashboard({ children }) {
   const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    localStorage.removeItem('userRole');
+    navigate('/login');
+  };
 
   return (
     <div className="h-screen flex flex-col overflow-hidden">
@@ -80,39 +89,54 @@ export default function CivilianDashboard({ children }) {
             {/* MENU */}
             <div className="space-y-2 text-gray-600 text-sm">
 
-              <div 
+              <NavLink 
+                to="/civilian-dashboard"
                 onClick={() => setOpen(false)}
-                className="p-2 rounded hover:bg-gray-200 cursor-pointer"
+                className={({ isActive }) => 
+                  `p-2 rounded hover:bg-gray-200 cursor-pointer block ${isActive ? 'bg-blue-100 text-blue-600 font-medium' : ''}`
+                }
               >
                 🏠 Overview
-              </div>
+              </NavLink>
 
-              <div 
+              <NavLink 
+                to="/incidents"
                 onClick={() => setOpen(false)}
-                className="p-2 rounded hover:bg-gray-200 cursor-pointer"
+                className={({ isActive }) => 
+                  `p-2 rounded hover:bg-gray-200 cursor-pointer block ${isActive ? 'bg-blue-100 text-blue-600 font-medium' : ''}`
+                }
               >
                 📝 Report
-              </div>
+              </NavLink>
 
-              <div 
+              <NavLink 
+                to="/incidents"
                 onClick={() => setOpen(false)}
-                className="p-2 rounded hover:bg-gray-200 cursor-pointer"
+                className={({ isActive }) => 
+                  `p-2 rounded hover:bg-gray-200 cursor-pointer block ${isActive ? 'bg-blue-100 text-blue-600 font-medium' : ''}`
+                }
               >
                 📍 Track
-              </div>
+              </NavLink>
 
-              <div 
+              <NavLink 
+                to="/edit-profile"
                 onClick={() => setOpen(false)}
-                className="p-2 rounded bg-blue-100 text-blue-600 font-medium"
+                className={({ isActive }) => 
+                  `p-2 rounded hover:bg-gray-200 cursor-pointer block ${isActive ? 'bg-blue-100 text-blue-600 font-medium' : ''}`
+                }
               >
                 👤 Profile
-              </div>
+              </NavLink>
 
             </div>
           </div>
 
           {/* LOGOUT */}
-          <div className="text-gray-500 text-sm cursor-pointer">
+          <div 
+            onClick={handleLogout}
+            className="text-gray-500 text-sm cursor-pointer hover:text-red-600"
+          >
             🚪 Logout
           </div>
         </div>
