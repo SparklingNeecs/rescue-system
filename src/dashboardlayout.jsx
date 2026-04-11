@@ -1,4 +1,5 @@
 import { NavLink, useNavigate } from "react-router-dom";
+import { Icon } from "@iconify/react";
 
 export default function DashboardLayout({ children }) {
   const navigate = useNavigate();
@@ -16,7 +17,7 @@ export default function DashboardLayout({ children }) {
       {/* 🔷 NAVBAR */}
       <div className="h-16 bg-[#1f6b75] flex items-center justify-between px-6 text-white">
         <div className="flex items-center gap-3">
-          <img src="src/assets/logo.png" className="w-10 h-10" />
+          <img src="src/assets/logo.png" className="w-20 h-10" alt="logo" />
           <div>
             <h1 className="font-semibold">Rescue Team</h1>
             <p className="text-xs opacity-70">
@@ -25,7 +26,7 @@ export default function DashboardLayout({ children }) {
           </div>
         </div>
 
-        🔔
+        <Icon icon="material-symbols-light:notifications" className="w-5 h-5 cursor-pointer" />
       </div>
 
       {/* 🔷 BODY */}
@@ -39,7 +40,7 @@ export default function DashboardLayout({ children }) {
             {/* PROFILE */}
             <div className="flex items-center gap-3 mb-8">
               <div className="w-12 h-12 bg-gray-300 rounded-full flex items-center justify-center">
-                👤
+                <Icon icon="iconamoon:profile-fill" className="w-6 h-6 text-gray-600" />
               </div>
 
               <div>
@@ -56,46 +57,51 @@ export default function DashboardLayout({ children }) {
               <NavLink 
                 to="/dashboard"
                 className={({ isActive }) => 
-                  `p-2 rounded hover:bg-gray-200 cursor-pointer block ${isActive ? 'bg-blue-100 text-blue-600 font-medium' : ''}`
+                  `p-2 rounded hover:bg-gray-200 cursor-pointer flex items-center gap-3 ${isActive ? 'bg-blue-100 text-blue-600 font-medium' : ''}`
                 }
               >
-                🏠 Dashboard
+                <Icon icon="material-symbols-light:home-rounded" className="w-5 h-5" />
+                Dashboard
               </NavLink>
 
               <NavLink 
                 to="/incidents"
                 className={({ isActive }) => 
-                  `p-2 rounded hover:bg-gray-200 cursor-pointer block ${isActive ? 'bg-blue-100 text-blue-600 font-medium' : ''}`
+                  `p-2 rounded hover:bg-gray-200 cursor-pointer flex items-center gap-3 ${isActive ? 'bg-blue-100 text-blue-600 font-medium' : ''}`
                 }
               >
-                📝 Incidents
+                <Icon icon="ic:baseline-emergency" className="w-5 h-5" />
+                Incidents
               </NavLink>
 
               <NavLink 
                 to="/units"
                 className={({ isActive }) => 
-                  `p-2 rounded hover:bg-gray-200 cursor-pointer block ${isActive ? 'bg-blue-100 text-blue-600 font-medium' : ''}`
+                  `p-2 rounded hover:bg-gray-200 cursor-pointer flex items-center gap-3 ${isActive ? 'bg-blue-100 text-blue-600 font-medium' : ''}`
                 }
               >
-                🖼 Units
+                <Icon icon="material-symbols:group" className="w-5 h-5" />
+                Units
               </NavLink>
 
               <NavLink 
                 to="/volunteer-approval"
                 className={({ isActive }) => 
-                  `p-2 rounded hover:bg-gray-200 cursor-pointer block ${isActive ? 'bg-blue-100 text-blue-600 font-medium' : ''}`
+                  `p-2 rounded hover:bg-gray-200 cursor-pointer flex items-center gap-3 ${isActive ? 'bg-blue-100 text-blue-600 font-medium' : ''}`
                 }
               >
-                👥 Volunteers
+                <Icon icon="material-symbols:groups" className="w-5 h-5" />
+                Volunteers
               </NavLink>
 
               <NavLink 
                 to="/edit-profile"
                 className={({ isActive }) => 
-                  `p-2 rounded hover:bg-gray-200 cursor-pointer block ${isActive ? 'bg-blue-100 text-blue-600 font-medium' : ''}`
+                  `p-2 rounded hover:bg-gray-200 cursor-pointer flex items-center gap-3 ${isActive ? 'bg-blue-100 text-blue-600 font-medium' : ''}`
                 }
               >
-                ⚙️ Settings
+                <Icon icon="material-symbols:settings" className="w-5 h-5" />
+                Settings
               </NavLink>
 
             </div>
@@ -104,9 +110,10 @@ export default function DashboardLayout({ children }) {
           {/* LOGOUT (FIXED BOTTOM) */}
           <div 
             onClick={handleLogout}
-            className="text-gray-500 text-sm cursor-pointer hover:text-red-600"
+            className="text-gray-500 text-sm cursor-pointer hover:text-red-600 flex items-center gap-3"
           >
-            🚪 Logout
+            <Icon icon="material-symbols:logout" className="w-5 h-5" />
+            Logout
           </div>
         </div>
 

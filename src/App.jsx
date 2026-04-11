@@ -30,13 +30,13 @@
 // export default App;
 
 /**Run volunteer application */
-// import VolunteerApplication from "./volunteerapplication";
+import VolunteerApplication from "./volunteerapplication";
 
-// function App() {
-//   return <VolunteerApplication />;
-// }
+function App() {
+  return <VolunteerApplication />;
+}
 
-// export default App;
+export default App;
 
 /**Run volunteer approval */
 // import VolunteerApproval from "./volunteerapproval";
@@ -55,10 +55,10 @@
 
 // export default App;
 
-import EditProfile from "./editprofile";
+// import EditProfile from "./editprofile";
 
-function App() {
-  return <EditProfile />;
-}
+// function App() {
+//   return <EditProfile />;
+// }
 
-export default App;
+// export default App;

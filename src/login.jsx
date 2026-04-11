@@ -130,6 +130,7 @@ export default function Login() {
             </p>
 
           </div>
+          
 
           {/* RIGHT SIDE IMAGE */}
           <div className="hidden md:block">

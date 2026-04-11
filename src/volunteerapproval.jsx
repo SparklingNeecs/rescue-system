@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Icon } from "@iconify/react";
 import ApplicantDetails from "./applicantdetails";
 import DashboardLayout from "./dashboardlayout";
 
@@ -10,7 +11,14 @@ const applicants = [
     role: "First Aid Volunteer",
     experience: "1 Year Experience",
     location: "Brgy. Isla, Nueva Ecija",
-    skills: ["Basic Life Support", "Emergency Driving"],
+    age: 28,
+    email: "mark.chavez@email.com",
+    contact: "09123456789",
+    availability: "M, T, W, TH, F",
+    preferredRole: "First Aid Volunteer",
+    certifications: ["BLS/CPR", "First Aid"],
+    skills: ["Basic Life Support", "Emergency Driving", "First Aid"],
+    files: ["BLS-cert.pdf", "FA-cert.pdf"],
   },
   {
     id: 2,
@@ -34,19 +42,15 @@ export default function VolunteerApproval() {
   const navigate = useNavigate();
 
   const handleViewFullApplication = (applicant) => {
-    navigate(`/applicant-details/${applicant.id}`);
+    setSelected(applicant);
   };
 
   const handleAccept = (applicant) => {
-    // Add your accept logic here
     console.log("Accepted:", applicant);
-    // Optionally navigate or refresh
   };
 
   const handleReject = (applicant) => {
-    // Add your reject logic here
     console.log("Rejected:", applicant);
-    // Optionally navigate or refresh
   };
 
   const handleAcceptPanel = () => {
@@ -65,12 +69,11 @@ export default function VolunteerApproval() {
 
   return (
     <DashboardLayout>
-
       <div className="flex h-full overflow-hidden">
-
+        
         {/* LEFT SIDE */}
         <div className="flex-1 p-6 overflow-y-auto">
-
+          
           {/* HEADER */}
           <div className="flex items-center justify-between mb-4">
             <div>
@@ -81,13 +84,20 @@ export default function VolunteerApproval() {
                 Volunteer roster & deployment status
               </p>
             </div>
-
-            <input
-              placeholder="Search ID, type, location..."
-              className="border px-3 py-2 rounded-md text-sm w-[250px]"
-            />
+            
+            {/* Search with magnifying glass icon */}
+            <div className="relative">
+              <input
+                placeholder="Search ID, type, location..."
+                className="border px-3 py-2 rounded-md text-sm w-[250px] pl-8"
+              />
+              <Icon 
+                icon="material-symbols:search" 
+                className="absolute left-2 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400"
+              />
+            </div>
           </div>
-
+          
           {/* TABS */}
           <div className="flex gap-6 border-b mb-4">
             <button className="text-gray-500">Roster</button>
@@ -95,7 +105,7 @@ export default function VolunteerApproval() {
               Applicant
             </button>
           </div>
-
+          
           {/* STATS */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
             {[
@@ -128,7 +138,6 @@ export default function VolunteerApproval() {
                 key={i}
                 className="bg-[#F5F6F8] border border-gray-200 rounded-lg p-4"
               >
-                {/* TOP */}
                 <div className="flex items-center gap-3">
                   <h2 className="text-3xl font-semibold text-gray-700">
                     {item.value}
@@ -137,8 +146,6 @@ export default function VolunteerApproval() {
                     {item.label}
                   </p>
                 </div>
-
-                {/* PROGRESS */}
                 <div className="mt-2 w-full h-1.5 bg-gray-300 rounded-full overflow-hidden">
                   <div
                     className={`h-full ${item.color} rounded-full`}
@@ -148,19 +155,16 @@ export default function VolunteerApproval() {
               </div>
             ))}
           </div>
-
-          {/* LIST */}
+          
+          {/* APPLICANT LIST */}
           {applicants.map((app) => (
             <div key={app.id} className="bg-white p-4 rounded-lg shadow mb-4">
-
               <h3 className="font-semibold text-lg">{app.name}</h3>
-
               <p className="text-sm text-gray-500">
                 {app.role} · {app.experience}
               </p>
-
               <p className="text-xs text-gray-400">{app.location}</p>
-
+              
               <div className="mt-2 flex gap-2 flex-wrap">
                 {app.skills.map((skill, i) => (
                   <span
@@ -171,36 +175,40 @@ export default function VolunteerApproval() {
                   </span>
                 ))}
               </div>
-
+              
               <div className="flex mt-4 border-t pt-3 text-sm">
                 <button
                   onClick={() => handleViewFullApplication(app)}
-                  className="flex-1 text-gray-600 border-r hover:text-blue-600"
+                  className="flex-1 text-gray-600 border-r hover:text-blue-600 flex items-center justify-center gap-1"
                 >
-                  🔍 View Full Application
+                  <Icon icon="material-symbols:search" className="w-4 h-4" />
+                  View Full Application
                 </button>
-
+                
+                {/* Accept button with check icon */}
                 <button 
                   onClick={() => handleAccept(app)}
-                  className="flex-1 text-green-600 hover:text-green-700"
+                  className="flex-1 text-green-600 hover:text-green-700 flex items-center justify-center gap-1"
                 >
-                  ✔ Accept
+                  <Icon icon="material-symbols:check" className="w-4 h-4" />
+                  Accept
                 </button>
-
+                
+                {/* Reject button with close icon */}
                 <button 
                   onClick={() => handleReject(app)}
-                  className="flex-1 text-red-500 hover:text-red-600"
+                  className="flex-1 text-red-500 hover:text-red-600 flex items-center justify-center gap-1"
                 >
-                  ✖ Reject
+                  <Icon icon="material-symbols:close" className="w-4 h-4" style={{ color: "#DC5656" }} />
+                  Reject
                 </button>
               </div>
             </div>
           ))}
         </div>
-
+        
         {/* RIGHT PANEL */}
-        <div className="w-[400px] border-l bg-white flex flex-col">
-
+        <div className="w-[450px] border-l bg-white flex flex-col">
           {selected ? (
             <>
               <div className="flex-1 overflow-y-auto">
@@ -209,18 +217,17 @@ export default function VolunteerApproval() {
                   onClose={() => setSelected(null)}
                 />
               </div>
-
+              
               <div className="flex justify-between items-center p-3 border-t border-[#DFDFF0] bg-white">
-
-                {/* LEFT */}
+                {/* Reject button with close icon */}
                 <button 
                   onClick={handleRejectPanel}
-                  className="px-3 py-1.5 text-sm font-normal border border-red-400 text-red-500 rounded hover:bg-red-50"
+                  className="px-3 py-1.5 text-sm font-normal border border-red-400 text-red-500 rounded hover:bg-red-50 flex items-center gap-1"
                 >
-                  ✖ Reject
+                  <Icon icon="material-symbols:close" className="w-4 h-4" />
+                  Reject
                 </button>
-
-                {/* RIGHT */}
+                
                 <div className="flex gap-2">
                   <button
                     onClick={() => setSelected(null)}
@@ -228,12 +235,14 @@ export default function VolunteerApproval() {
                   >
                     Close
                   </button>
-
+                  
+                  {/* Accept button with check icon */}
                   <button 
                     onClick={handleAcceptPanel}
-                    className="px-3 py-1.5 text-sm font-normal bg-green-600 text-white rounded hover:bg-green-700"
+                    className="px-3 py-1.5 text-sm font-normal bg-green-600 text-white rounded hover:bg-green-700 flex items-center gap-1"
                   >
-                    ✔ Accept
+                    <Icon icon="material-symbols:check" className="w-4 h-4" />
+                    Accept
                   </button>
                 </div>
               </div>
@@ -243,16 +252,14 @@ export default function VolunteerApproval() {
               <div>
                 <p className="font-semibold">No Selection</p>
                 <p className="text-sm">
-                  Click a volunteer card to view details.
+                  Click "View Full Application" to see applicant details.
                 </p>
               </div>
             </div>
           )}
-
         </div>
-
+        
       </div>
-
     </DashboardLayout>
   );
 }

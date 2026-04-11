@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Icon } from "@iconify/react";
 import { useNavigate, NavLink } from "react-router-dom";
 
 export default function CivilianDashboard({ children }) {
@@ -21,15 +22,15 @@ export default function CivilianDashboard({ children }) {
         {/* LEFT */}
         <div className="flex items-center gap-3">
 
-          {/* 🍔 BURGER */}
+          {/*BURGER */}
           <button
             onClick={() => setOpen(true)}
-            className="block md:hidden text-2xl"
+            className="block md:hidden"
           >
-            ☰
+            <Icon icon="stash:burger-classic-duotone" width="28" className="text-gray-700" />
           </button>
 
-          <img src="src/assets/logo.png" className="w-10 h-10" />
+          <img src="src/assets/logo.png" className="w-20 h-10" />
 
           <div className="hidden sm:block">
             <h1 className="font-semibold">CIVILIAN</h1>
@@ -40,8 +41,11 @@ export default function CivilianDashboard({ children }) {
         </div>
 
         {/* RIGHT */}
-        <div>🔔</div>
+        <div className="flex items-center gap-4">
+          <Icon icon="material-symbols-light:notifications" width="24" style={{ color: "#ffffff" }} />
+        </div>
       </div>
+    
 
       {/* 🔷 BODY */}
       <div className="flex flex-1 overflow-hidden relative">
@@ -75,7 +79,7 @@ export default function CivilianDashboard({ children }) {
             {/* PROFILE */}
             <div className="flex items-center gap-3 mb-8">
               <div className="w-12 h-12 bg-gray-300 rounded-full flex items-center justify-center">
-                👤
+                <Icon icon="iconamoon:profile-fill" width="24" />
               </div>
 
               <div>
@@ -93,52 +97,65 @@ export default function CivilianDashboard({ children }) {
                 to="/civilian-dashboard"
                 onClick={() => setOpen(false)}
                 className={({ isActive }) => 
-                  `p-2 rounded hover:bg-gray-200 cursor-pointer block ${isActive ? 'bg-blue-100 text-blue-600 font-medium' : ''}`
+                  `p-2 rounded hover:bg-gray-200 cursor-pointer flex items-center gap-2 ${
+                    isActive ? 'bg-blue-100 text-blue-600 font-medium' : ''
+                  }`
                 }
               >
-                🏠 Overview
+                <Icon icon="material-symbols-light:home-rounded" width="20" style={{ color: "#656363" }}/>
+                Overview
               </NavLink>
 
               <NavLink 
                 to="/incidents"
                 onClick={() => setOpen(false)}
                 className={({ isActive }) => 
-                  `p-2 rounded hover:bg-gray-200 cursor-pointer block ${isActive ? 'bg-blue-100 text-blue-600 font-medium' : ''}`
+                  `p-2 rounded hover:bg-gray-200 cursor-pointer flex items-center gap-2 ${
+                    isActive ? 'bg-blue-100 text-blue-600 font-medium' : ''
+                  }`
                 }
               >
-                📝 Report
+                <Icon icon="solar:siren-bold" width="20" style={{ color: "#656363" }} />
+                Report
               </NavLink>
 
               <NavLink 
                 to="/incidents"
                 onClick={() => setOpen(false)}
                 className={({ isActive }) => 
-                  `p-2 rounded hover:bg-gray-200 cursor-pointer block ${isActive ? 'bg-blue-100 text-blue-600 font-medium' : ''}`
+                  `p-2 rounded hover:bg-gray-200 cursor-pointer flex items-center gap-2 ${
+                    isActive ? 'bg-blue-100 text-blue-600 font-medium' : ''
+                  }`
                 }
               >
-                📍 Track
-              </NavLink>
+                <Icon icon="mage:location-fill" width="20" style={{ color: "#656363" }} />
+                Track
+              </NavLink>  
 
               <NavLink 
                 to="/edit-profile"
                 onClick={() => setOpen(false)}
                 className={({ isActive }) => 
-                  `p-2 rounded hover:bg-gray-200 cursor-pointer block ${isActive ? 'bg-blue-100 text-blue-600 font-medium' : ''}`
+                  `p-2 rounded hover:bg-gray-200 cursor-pointer flex items-center gap-2 ${
+                    isActive ? 'bg-blue-100 text-color=[0C7FDA] font-medium' : ''
+                  }`
                 }
               >
-                👤 Profile
+                <Icon icon="iconamoon:profile-fill" width="20"  />
+                Profile
               </NavLink>
 
             </div>
           </div>
 
           {/* LOGOUT */}
-          <div 
-            onClick={handleLogout}
-            className="text-gray-500 text-sm cursor-pointer hover:text-red-600"
-          >
-            🚪 Logout
-          </div>
+        <div 
+          onClick={handleLogout}
+          className="text-gray-500 text-sm cursor-pointer hover:text-red-600 flex items-center gap-2"
+        >
+          <Icon icon="majesticons:logout" width="20" />
+          Logout
+        </div>
         </div>
 
         {/* 🟦 MAIN CONTENT */}

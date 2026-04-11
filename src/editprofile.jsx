@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+import { Icon } from "@iconify/react";
 import { useNavigate } from "react-router-dom";
 import CivilianDashboard from "./civiliandashboard";
 
@@ -22,17 +23,21 @@ export default function EditProfile() {
 
         {/* HEADER */}
         <div className="mb-6">
-          <div className="flex items-center gap-2">
-            <span className="text-2xl">👤</span>
-            <h1 className="text-3xl font-bold text-gray-700">
+          <div className="flex items-center gap-3">
+            <Icon 
+              icon="iconamoon:profile-fill" 
+              width="36" 
+              style={{ color: "#0E4B5E" }}
+              className="text-color-[#0E4B5E]"/>
+            <h1 className="text-3xl font-bold text-color-[#474C53]">
               User Account
             </h1>
           </div>
-          <p className="text-sm text-gray-500">
+          <p className="text-sm text-gray-500 mt-1">
             Manage your account information and preferences
           </p>
         </div>
-
+        
         {/* CARD */}
         <div className="bg-white rounded-lg shadow border">
 
@@ -41,11 +46,11 @@ export default function EditProfile() {
             <div className="flex items-center gap-4">
 
               {/* PROFILE IMAGE */}
-              <div className="w-20 h-20 rounded-full border-2 border-blue-500 relative">
+              <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-20 md:h-20 rounded-full border-2 border-blue-500 relative">
                 <div className="w-full h-full bg-gray-300 rounded-full"></div>
 
                 {/* SMALL DOT */}
-                <div className="absolute bottom-1 right-1 w-3 h-3 bg-blue-500 rounded-full border-2 border-white"></div>
+                <div className="absolute bottom-1 right-1 w-4 h-4 bg-blue-500 rounded-full border-2 border-white"></div>
               </div>
 
               <div>

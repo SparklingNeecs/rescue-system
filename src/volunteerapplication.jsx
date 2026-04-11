@@ -254,6 +254,7 @@ export default function VolunteerApplication() {
               </button>
             </form>
           </div>
+          
 
           {/* RIGHT IMAGE */}
           <div className="hidden md:block">

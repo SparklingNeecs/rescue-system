@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import ApplicantDetails from "./applicantdetails";
 import DashboardLayout from "./dashboardlayout";
 
+
 export default function IncidentManagement() {
   const navigate = useNavigate();
   const [selectedIncident, setSelectedIncident] = useState(null);
