@@ -19,7 +19,7 @@ export default function EditProfile() {
 
   return (
     <CivilianDashboard>
-      <div className="p-6">
+      <div className="p-6 -mt-8">
 
         {/* HEADER */}
         <div className="mb-6">

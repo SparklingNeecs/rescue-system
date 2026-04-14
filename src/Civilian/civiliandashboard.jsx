@@ -30,7 +30,7 @@ export default function CivilianDashboard({ children }) {
             <Icon icon="stash:burger-classic-duotone" width="28" className="text-gray-700" />
           </button>
 
-          <img src="src/assets/logo.png" className="w-20 h-10" />
+          <img src="src/assets/logo.png" className="w-20 h-10" alt="logo" />
 
           <div className="hidden sm:block">
             <h1 className="font-semibold">CIVILIAN</h1>
@@ -91,57 +91,61 @@ export default function CivilianDashboard({ children }) {
             </div>
 
             {/* MENU */}
-            <div className="space-y-2 text-gray-600 text-sm">
+            <div className="space-y-2 text-gray-600 text-base">
 
+              {/* Overview - Navigates to /civilian-dashboard */}
               <NavLink 
                 to="/civilian-dashboard"
                 onClick={() => setOpen(false)}
                 className={({ isActive }) => 
                   `p-2 rounded hover:bg-gray-200 cursor-pointer flex items-center gap-2 ${
-                    isActive ? 'bg-blue-100 text-blue-600 font-medium' : ''
+                    isActive ? 'bg-[#DFF1FF] text-[#0C7FDA] font-medium' : ''
                   }`
                 }
               >
-                <Icon icon="material-symbols-light:home-rounded" width="20" style={{ color: "#656363" }}/>
+                <Icon icon="material-symbols-light:home-rounded" width="20" style={{ color: "#5D7285" }}/>
                 Overview
               </NavLink>
 
+              {/* Report - Navigates to /report1 */}
               <NavLink 
-                to="/incidents"
+                to="/report"
                 onClick={() => setOpen(false)}
                 className={({ isActive }) => 
                   `p-2 rounded hover:bg-gray-200 cursor-pointer flex items-center gap-2 ${
-                    isActive ? 'bg-blue-100 text-blue-600 font-medium' : ''
+                    isActive ? 'bg-[#DFF1FF] text-[#0C7FDA] font-medium' : ''
                   }`
                 }
               >
-                <Icon icon="solar:siren-bold" width="20" style={{ color: "#656363" }} />
+                <Icon icon="solar:siren-bold" width="20" style={{ color: "#5D7285" }} />
                 Report
               </NavLink>
 
+              {/* Track - Navigates to /track-reports */}
               <NavLink 
-                to="/incidents"
+                to="/track-reports"
                 onClick={() => setOpen(false)}
                 className={({ isActive }) => 
                   `p-2 rounded hover:bg-gray-200 cursor-pointer flex items-center gap-2 ${
-                    isActive ? 'bg-blue-100 text-blue-600 font-medium' : ''
+                    isActive ? 'bg-[#DFF1FF] text-[#0C7FDA] font-medium' : ''
                   }`
                 }
               >
-                <Icon icon="mage:location-fill" width="20" style={{ color: "#656363" }} />
+                <Icon icon="mage:location-fill" width="20" style={{ color: "#5D7285" }} />
                 Track
               </NavLink>  
 
+              {/* Profile - Navigates to /edit-profile */}
               <NavLink 
                 to="/edit-profile"
                 onClick={() => setOpen(false)}
                 className={({ isActive }) => 
                   `p-2 rounded hover:bg-gray-200 cursor-pointer flex items-center gap-2 ${
-                    isActive ? 'bg-blue-100 text-color=[0C7FDA] font-medium' : ''
+                    isActive ? 'bg-[#DFF1FF] text-[#0C7FDA] font-medium' : ''
                   }`
                 }
               >
-                <Icon icon="iconamoon:profile-fill" width="20"  />
+                <Icon icon="iconamoon:profile-fill" width="20" />
                 Profile
               </NavLink>
 
@@ -149,17 +153,17 @@ export default function CivilianDashboard({ children }) {
           </div>
 
           {/* LOGOUT */}
-        <div 
-          onClick={handleLogout}
-          className="text-gray-500 text-sm cursor-pointer hover:text-red-600 flex items-center gap-2"
-        >
-          <Icon icon="majesticons:logout" width="20" />
-          Logout
-        </div>
+          <div 
+            onClick={handleLogout}
+            className="text-gray-500 text-sm cursor-pointer hover:text-red-600 flex items-center gap-2"
+          >
+            <Icon icon="majesticons:logout" width="20" />
+            Logout
+          </div>
         </div>
 
         {/* 🟦 MAIN CONTENT */}
-        <div className="flex-1 bg-[#EEF2F6] overflow-y-auto p-4 md:p-6 z-0">
+        <div className="flex-1 bg-[#EEF2F6] overflow-y-auto pt-4 md:pt-6 pr-0 z-0">
           {children}
         </div>
 

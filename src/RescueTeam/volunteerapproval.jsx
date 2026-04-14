@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Icon } from "@iconify/react";
 import ApplicantDetails from "./applicantdetails";
-import DashboardLayout from "./dashboardlayout";
+import DashboardLayout from "./mrtlayout";
 
 const applicants = [
   {
@@ -69,7 +69,7 @@ export default function VolunteerApproval() {
 
   return (
     <DashboardLayout>
-      <div className="flex h-full overflow-hidden">
+      <div className="flex h-full overflow-hidden -mt-8">
         
         {/* LEFT SIDE */}
         <div className="flex-1 p-6 overflow-y-auto">
@@ -195,13 +195,7 @@ export default function VolunteerApproval() {
                 </button>
                 
                 {/* Reject button with close icon */}
-                <button 
-                  onClick={() => handleReject(app)}
-                  className="flex-1 text-red-500 hover:text-red-600 flex items-center justify-center gap-1"
-                >
-                  <Icon icon="material-symbols:close" className="w-4 h-4" style={{ color: "#DC5656" }} />
-                  Reject
-                </button>
+
               </div>
             </div>
           ))}

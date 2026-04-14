@@ -1,5 +1,6 @@
+
 import { Icon } from "@iconify/react";
-import DashboardLayout from "./dashboardlayout";
+import DashboardLayout from "./mrtlayout";
 import { Outlet } from "react-router-dom";
 import IncidentDetails from "./incidentdetails";
 import { useState } from "react";
@@ -9,7 +10,7 @@ export default function Dashboard() {
   
   return (
     <DashboardLayout>
-      <div className="h-full flex flex-col bg-[#f1f5f9] overflow-hidden">
+      <div className="h-full flex flex-col bg-[#f1f5f9] overflow-hidden -mt-6">
         
         {/* STATS - STICKY */}
         <div className="sticky top-0 z-10 bg-[#f1f5f9] pt-4 pb-2">

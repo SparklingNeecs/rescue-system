@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import ApplicantDetails from "./applicantdetails";
-import DashboardLayout from "./dashboardlayout";
+import IncidentDetails from "./incidentdetails";  // ✅ Fixed: Changed from ApplicantDetails to IncidentDetails
+import DashboardLayout from "./mrtlayout";
 
 
 export default function IncidentManagement() {
@@ -29,7 +29,7 @@ export default function IncidentManagement() {
 
   return (
     <DashboardLayout>
-      <div className="p-6">
+      <div className="p-6 -mt-8">
 
         {/* HEADER */}
         <div className="mb-4">

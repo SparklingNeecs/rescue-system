@@ -5,7 +5,7 @@ export default function IncidentDetails({ data, onClose }) {
   return (
     <div className="h-full flex flex-col bg-white">
       
-      {/* 🔷 HEADER - STICKY */}
+      {/* HEADER - STICKY */}
       <div className="sticky top-0 bg-white z-10 p-4 border-b relative">
         <button
           onClick={onClose}
@@ -18,7 +18,7 @@ export default function IncidentDetails({ data, onClose }) {
         </h2>
       </div>
 
-      {/* 🔷 CONTENT - SCROLLABLE */}
+      {/* CONTENT - SCROLLABLE */}
       <div className="flex-1 overflow-y-auto">
         
         {/* TITLE SECTION */}
@@ -39,32 +39,48 @@ export default function IncidentDetails({ data, onClose }) {
           <p className="text-xs text-gray-500 mt-1">ID: {data.id || "N/A"}</p>
         </div>
 
-        {/* LOCATION SECTION */}
-        <Section title="Location">
-          <div className="px-3 py-2 space-y-2">
-            <div className="flex items-center gap-2 text-gray-700 text-sm">
-              <Icon icon="ic:outline-location-on" width="16" className="text-red-500" />
-              <span>{data.address}</span>
+        {/* LOCATION SECTION - Fixed alignment */}
+        <div className="border-t border-[#DFDFF0]">
+          <div className="bg-[#EBEDFA] px-3 py-2 font-medium text-[#656363] text-sm">
+            Location
+          </div>
+          <div className="px-3 py-3 space-y-2">
+            <div className="flex items-start gap-2">
+              <Icon icon="ic:outline-location-on" width="16" className="text-red-500 mt-0.5 flex-shrink-0" />
+              <span className="text-gray-700 text-sm flex-1">{data.address}</span>
             </div>
-            <div className="flex items-center gap-2 text-gray-400 text-xs">
-              <Icon icon="material-symbols:my-location-outline" width="14" />
-              <span>{data.coordinates}</span>
+            <div className="flex items-start gap-2">
+              <Icon icon="material-symbols:my-location-outline" width="14" className="text-gray-400 mt-0.5 flex-shrink-0" />
+              <span className="text-gray-400 text-xs flex-1">{data.coordinates}</span>
             </div>
           </div>
-        </Section>
+        </div>
 
-        {/* REPORTER SECTION */}
-        <Section title="Reporter">
-          <InfoRow label="Name" value={data.reporter} />
-          <InfoRow label="Contact" value={data.contact} />
-        </Section>
+        {/* REPORTER SECTION - Fixed alignment */}
+        <div className="border-t border-[#DFDFF0]">
+          <div className="bg-[#EBEDFA] px-3 py-2 font-medium text-[#656363] text-sm">
+            Reporter
+          </div>
+          <div className="divide-y divide-[#DFDFF0]">
+            <div className="flex px-3 py-2">
+              <span className="text-gray-500 text-sm w-20 flex-shrink-0">Name</span>
+              <span className="font-semibold text-[#262D31] text-sm flex-1">{data.reporter || "-"}</span>
+            </div>
+            <div className="flex px-3 py-2">
+              <span className="text-gray-500 text-sm w-20 flex-shrink-0">Contact</span>
+              <span className="font-semibold text-[#262D31] text-sm flex-1">{data.contact || "-"}</span>
+            </div>
+          </div>
+        </div>
 
-        {/* DESCRIPTION SECTION */}
-        <Section title="Description">
+        {/* DESCRIPTION SECTION - Fixed alignment */}
+        <div className="border-t border-[#DFDFF0]">
+          <div className="bg-[#EBEDFA] px-3 py-2 font-medium text-[#656363] text-sm">
+            Description
+          </div>
           <p className="p-3 text-gray-600 text-sm leading-relaxed">
             {data.description}
           </p>
-          
           {/* INCIDENT IMAGE */}
           <div className="px-3 pb-3">
             <img
@@ -74,12 +90,15 @@ export default function IncidentDetails({ data, onClose }) {
             />
             <p className="text-xs text-gray-400 mt-1 text-center">Incident photo</p>
           </div>
-        </Section>
+        </div>
 
         {/* TIMELINE SECTION */}
-        <Section title="Activity Timeline">
-          <div className="p-3">
-            {data.timeline && data.timeline.length > 0 ? (
+        {data.timeline && data.timeline.length > 0 && (
+          <div className="border-t border-[#DFDFF0]">
+            <div className="bg-[#EBEDFA] px-3 py-2 font-medium text-[#656363] text-sm">
+              Activity Timeline
+            </div>
+            <div className="p-3">
               <div className="flex gap-2 flex-wrap">
                 {data.timeline.map((item, i) => (
                   <span key={i} className="text-xs bg-[#F5F4FF] px-2 py-1 rounded border border-[#DFDFF0]">
@@ -87,25 +106,23 @@ export default function IncidentDetails({ data, onClose }) {
                   </span>
                 ))}
               </div>
-            ) : (
-              <p className="text-gray-500 text-sm">No updates yet.</p>
-            )}
+            </div>
           </div>
-        </Section>
+        )}
 
       </div>
 
-      {/* 🔷 ACTIONS - STICKY BOTTOM */}
+      {/* ACTIONS - STICKY BOTTOM */}
       <div className="sticky bottom-0 bg-white z-10 p-3 border-t space-y-2">
         <div className="flex gap-2">
           <button className="flex-1 bg-red-500 text-white py-2 rounded text-sm hover:bg-red-600 transition">
-            🚨 Dispatch
+            Dispatch
           </button>
           <button className="flex-1 bg-green-500 text-white py-2 rounded text-sm hover:bg-green-600 transition">
-            ✓ Resolve
+            Resolve
           </button>
           <button className="flex-1 border border-gray-300 py-2 rounded text-sm hover:bg-gray-50 transition">
-            📄 View Report
+            View Report
           </button>
         </div>
         <div className="flex gap-2">
@@ -120,28 +137,6 @@ export default function IncidentDetails({ data, onClose }) {
         </div>
       </div>
 
-    </div>
-  );
-}
-
-function Section({ title, children }) {
-  return (
-    <div className="border-t border-[#DFDFF0]">
-      <div className="bg-[#EBEDFA] px-3 py-2 font-medium text-[#656363] text-sm sticky top-[57px]">
-        {title}
-      </div>
-      {children}
-    </div>
-  );
-}
-
-function InfoRow({ label, value }) {
-  return (
-    <div className="flex justify-between px-3 py-2 border-t border-[#DFDFF0] text-sm">
-      <span className="text-gray-500">{label}</span>
-      <span className="font-semibold text-[#262D31]">
-        {value || "-"}
-      </span>
     </div>
   );
 }
