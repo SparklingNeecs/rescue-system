@@ -37,19 +37,22 @@ createRoot(document.getElementById('root')).render(
         {/* Civilian Routes */}
         <Route path="/civilian-dashboard" element={<Overview />} />
         <Route path="/report" element={<Step1 />} />
-        <Route path="/track-reports" element={<TrackReports />} />
+        <Route path="/track-reports" element={<TrackReports />} />  
         <Route path="/edit-profile" element={<EditProfile />} />
         <Route path="/addphoto" element={<AddPhoto />} />
         <Route path="/details" element={<Details />} />
         <Route path="/review" element={<Review />} />
-        <Route path="/submit" element={<Submit />} />
-
+        <Route path="/submit" element={<Submit />} />   
+        
+        
         {/* Rescue Team Routes */}
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/incidents" element={<IncidentManagement />} />
         <Route path="/volunteer-application" element={<VolunteerApplication />} />
         <Route path="/volunteer-approval" element={<VolunteerApproval />} />
         <Route path="/applicant-details/:id" element={<ApplicantDetails />} />
+        
+        {/* Rescue Team Incident Details */}
         <Route path="/incidents/:id" element={<IncidentDetails />} />
       </Routes>
     </BrowserRouter>
