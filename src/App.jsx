@@ -70,10 +70,12 @@
 
 // export default App;
 
-import Overview from "./Civilian/overview";
+// In App.jsx
+// In App.jsx
+import { Navigate } from 'react-router-dom';
 
 function App() {
-  return <Overview />;
-} 
+  return <Navigate to="/admin/overview" replace />;
+}
 
 export default App;

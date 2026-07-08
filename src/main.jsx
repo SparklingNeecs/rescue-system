@@ -11,7 +11,7 @@ import Dashboard from './RescueTeam/dashboard.jsx'
 import IncidentManagement from './RescueTeam/incidentmanagement.jsx'
 import IncidentDetails from './RescueTeam/incidentdetails.jsx'
 import ApplicantDetails from './RescueTeam/applicantdetails.jsx'
-import VolunteerApproval from './RescueTeam/volunteerapproval.jsx'
+import Volunteer from './RescueTeam/volunteer.jsx'
 
 // Civilian Pages
 import Overview from './Civilian/overview.jsx'
@@ -24,6 +24,17 @@ import Review from './Civilian/review.jsx';
 import Submit from './Civilian/submit.jsx'
 
 import VolunteerApplication from './Volunteer/volunteerapplication.jsx'
+
+import Settings from './RescueTeam/settings.jsx'
+import Units from './RescueTeam/units.jsx'
+
+// Admin Imports
+import AdminOverview from './Admin/adminoverview.jsx'
+import SystemSettings from './Admin/systemsettings.jsx'
+import Profile from './Admin/profile.jsx'
+import SystemMaintenance from './Admin/systemmaintenance.jsx'
+import IncidentReports from './Admin/incidentreports.jsx'
+import UserAccount from './Admin/useraccount.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -44,16 +55,23 @@ createRoot(document.getElementById('root')).render(
         <Route path="/review" element={<Review />} />
         <Route path="/submit" element={<Submit />} />   
         
-        
         {/* Rescue Team Routes */}
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/incidents" element={<IncidentManagement />} />
         <Route path="/volunteer-application" element={<VolunteerApplication />} />
-        <Route path="/volunteer-approval" element={<VolunteerApproval />} />
+        <Route path="/volunteer" element={<Volunteer />} />
         <Route path="/applicant-details/:id" element={<ApplicantDetails />} />
-        
-        {/* Rescue Team Incident Details */}
         <Route path="/incidents/:id" element={<IncidentDetails />} />
+        <Route path="/settings" element={<Settings />} />
+        <Route path="/units" element={<Units />} />
+
+        {/* Admin Routes - Separate routes (NOT nested) */}
+        <Route path="/admin/overview" element={<AdminOverview />} />
+        <Route path="/admin/systemsettings" element={<SystemSettings />} />
+        <Route path="/admin/profile" element={<Profile />} />
+        <Route path="/admin/systemmaintenance" element={<SystemMaintenance />} />
+        <Route path="/admin/incidentreports" element={<IncidentReports />} />
+        <Route path="/admin/useraccounts" element={<UserAccount />} />
       </Routes>
     </BrowserRouter>
   </StrictMode>,

@@ -14,7 +14,7 @@ export default function Login() {
     const userRole = "admin"; // Change this based on actual login
     
     if (userRole === "admin") {
-      navigate("/dashboard");
+      navigate("/admin/overview");
     } else {
       navigate("/civilian-dashboard");
     }

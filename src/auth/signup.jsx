@@ -128,9 +128,9 @@ export default function Signup() {
 
                 <select className="w-full bg-transparent outline-none text-gray-600">
                   <option>- Select Role / Position -</option>
-                  <option>Responder</option>
-                  <option>Dispatcher</option>
-                  <option>Coordinator</option>
+                  <option>Civilian</option>
+                  <option>Volunteer</option>
+                  <option>Admin</option>
                 </select>
 
               </fieldset>
